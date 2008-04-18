@@ -1,4 +1,3 @@
-# $Id: PKGBUILD,v 1.30 2008/04/01 11:50:45 alexander Exp $
 # Maintainer: Alexander Baldeck <alexander@archlinux.org>
 # Contributor: Dale Blount <dale@archlinux.org>
 # Contributer: Nick Penwarden <toth64@yahoo.com>
