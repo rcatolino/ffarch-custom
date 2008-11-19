@@ -1,4 +1,3 @@
-# Maintainer: Dan McGee <dan@archlinux.org>
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox
