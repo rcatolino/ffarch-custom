@@ -4,7 +4,7 @@
 
 pkgname=firefox
 pkgver=52.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Standalone web browser from mozilla.org"
 arch=(i686 x86_64)
 license=(MPL GPL LGPL)
@@ -93,6 +93,7 @@ ac_add_options --enable-system-pixman
 
 # Features
 ac_add_options --enable-startup-notification
+ac_add_options --enable-alsa
 ac_add_options --disable-crashreporter
 ac_add_options --disable-updater
 
