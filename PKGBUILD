@@ -17,7 +17,7 @@ optdepends=('networkmanager: Location detection via available WiFi networks'
             'libnotify: Notification integration'
             'speech-dispatcher: Text-to-Speech')
 options=(!emptydirs !makeflags !strip)
-_repo=https://hg.mozilla.org/releases/mozilla-release
+_repo=https://hg.mozilla.org/mozilla-unified
 source=("hg+$_repo#tag=FIREFOX_${pkgver//./_}_RELEASE"
         firefox.desktop firefox-symbolic.svg
         firefox-install-dir.patch rust-i686.patch fix-wifi-scanner.diff)
@@ -44,7 +44,7 @@ prepare() {
   mkdir path
   ln -s /usr/bin/python2 path/python
 
-  cd mozilla-release
+  cd mozilla-unified
   patch -Np1 -i ../firefox-install-dir.patch
 
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1314968
@@ -104,7 +104,7 @@ END
 }
 
 build() {
-  cd mozilla-release
+  cd mozilla-unified
 
   # _FORTIFY_SOURCE causes configure failures
   CPPFLAGS+=" -O2"
@@ -121,7 +121,7 @@ build() {
 }
 
 package() {
-  cd mozilla-release
+  cd mozilla-unified
   make -f client.mk DESTDIR="$pkgdir" INSTALL_SDK= install
 
   _vendorjs="$pkgdir/usr/lib/firefox/browser/defaults/preferences/vendor.js"
