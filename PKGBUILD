@@ -106,9 +106,6 @@ build() {
   # _FORTIFY_SOURCE causes configure failures
   CPPFLAGS+=" -O2"
 
-  # Hardening
-  LDFLAGS+=" -Wl,-z,now"
-
   export PATH="$srcdir/path:$PATH"
 
   # Do PGO
