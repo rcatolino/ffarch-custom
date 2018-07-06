@@ -3,7 +3,7 @@
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox
-pkgver=61.0
+pkgver=61.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org"
 arch=(x86_64)
@@ -38,9 +38,6 @@ _google_api_key=AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM
 _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 prepare() {
-  mkdir path
-  ln -s /usr/bin/python2 path/python
-
   cd mozilla-unified
 
   echo -n "$_google_api_key" >google-api-key
@@ -51,9 +48,9 @@ ac_add_options --enable-application=browser
 
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
-ac_add_options --enable-gold
-ac_add_options --enable-pie
-ac_add_options --enable-optimize="-O2"
+ac_add_options --enable-linker=gold
+ac_add_options --enable-hardening
+ac_add_options --enable-optimize
 ac_add_options --enable-rust-simd
 
 # Branding
@@ -92,15 +89,8 @@ END
 build() {
   cd mozilla-unified
 
-  # _FORTIFY_SOURCE causes configure failures
-  CPPFLAGS+=" -O2"
-
-  export PATH="$srcdir/path:$PATH"
   export MOZ_SOURCE_REPO="$_repo"
 
-  # Do PGO
-  #xvfb-run -a -n 95 -s "-extension GLX -screen 0 1280x1024x24" \
-  #  MOZ_PGO=1 ./mach build
   ./mach build
   ./mach buildsymbols
 }
