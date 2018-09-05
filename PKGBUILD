@@ -3,7 +3,7 @@
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox
-pkgver=61.0.2
+pkgver=62.0
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org"
 arch=(x86_64)
@@ -59,7 +59,6 @@ ac_add_options --enable-update-channel=release
 ac_add_options --with-distribution-id=org.archlinux
 export MOZILLA_OFFICIAL=1
 export MOZ_TELEMETRY_REPORTING=1
-export MOZ_ADDON_SIGNING=1
 export MOZ_REQUIRE_SIGNING=1
 
 # Keys
@@ -154,3 +153,5 @@ END
   ln -srf "$pkgdir/usr/bin/$pkgname" \
     "$pkgdir/usr/lib/$pkgname/firefox-bin"
 }
+
+# vim:set sw=2 et:
