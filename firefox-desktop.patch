@@ -1,4 +1,4 @@
-diff '--color=auto' -Naur firefox-114.0.orig/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in firefox-114.0/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in
+diff -Naur firefox-114.0.orig/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in firefox-114.0/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in
 --- firefox-114.0.orig/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in	2023-06-02 03:15:27.000000000 +0200
 +++ firefox-114.0/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in	2023-06-06 18:38:46.757054003 +0200
 @@ -1,7 +1,7 @@
@@ -20,7 +20,7 @@ diff '--color=auto' -Naur firefox-114.0.orig/taskcluster/docker/firefox-flatpak/
    <keywords>
      <keyword>mozilla</keyword>
      <keyword>internet</keyword>
-diff '--color=auto' -Naur firefox-114.0.orig/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop firefox-114.0/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop
+diff -Naur firefox-114.0.orig/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop firefox-114.0/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop
 --- firefox-114.0.orig/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop	2023-06-02 03:15:27.000000000 +0200
 +++ firefox-114.0/taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop	2023-06-06 18:38:46.757054003 +0200
 @@ -151,7 +151,7 @@
