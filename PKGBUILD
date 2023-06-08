@@ -65,7 +65,7 @@ options=(
 )
 source=(
   https://archive.mozilla.org/pub/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz{,.asc}
-  $pkgname-desktop.patch
+  $pkgname.desktop
   identity-icons-brand.svg
 )
 validpgpkeys=(
@@ -73,11 +73,11 @@ validpgpkeys=(
 )
 sha256sums=('d23a0502742f52110ce496837ba82b47bf38d40585633787508ae5be9a5b4bc6'
             'SKIP'
-            '66fee9db4fb85c41b0b6401c3efedb9cbd36850abeb9781879b75de5aa80987e'
+            '298eae9de76ec53182f38d5c549d0379569916eebf62149f9d7f4a7edef36abf'
             'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9')
 b2sums=('09d29112a487bc23c0e54380bf5e6ef5c62639aa53b6cca7c9a61b2452f4ee0e1a1b9f7ca996ddb78b842170fa67be0dc926c17956ab505e42966d443a798f34'
         'SKIP'
-        '6768e33be14b504a9f9af66733b7b0752da60b8f76b6b50521b8eb31c36f537d9ce6cf1fda40dfb0036efee10a6c853b52e4716858611ff420ce25273cbc9f1f'
+        'e18f2c22e394ca3b6758bc130245b254947e4d15921be3da443d6d7c3c4b0d22ead1b39fbc10a4f896edd19e2a1dffbd1cbb34dc4beb0621a6ddb70ccc53b3a7'
         '63a8dd9d8910f9efb353bed452d8b4b2a2da435857ccee083fc0c557f8c4c1339ca593b463db320f70387a1b63f1a79e709e9d12c69520993e26d85a3d742e34')
 
 # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
@@ -95,9 +95,6 @@ _mozilla_api_key=e05d56db0a694edc8b5aaebda3f2db6a
 prepare() {
   mkdir mozbuild
   cd firefox-$pkgver
-
-  # Adjust desktop and metainfo files
-  patch -Np1 -i ../$pkgname-desktop.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo -n "$_mozilla_api_key" >mozilla-api-key
@@ -236,10 +233,8 @@ END
   install -Dvm644 ../identity-icons-brand.svg \
     "$pkgdir/usr/share/icons/hicolor/symbolic/apps/$pkgname-symbolic.svg"
 
-  install -Dvm644 taskcluster/docker/firefox-flatpak/org.mozilla.firefox.desktop \
+  install -Dvm644 ../$pkgname.desktop \
     "$pkgdir/usr/share/applications/$pkgname.desktop"
-  install -Dvm644 taskcluster/docker/firefox-flatpak/org.mozilla.firefox.appdata.xml.in \
-    "$pkgdir/usr/share/metainfo/org.mozilla.firefox.appdata.xml"
 
   # Install a wrapper to avoid confusion about binary path
   install -Dvm755 /dev/stdin "$pkgdir/usr/bin/$pkgname" <<END
