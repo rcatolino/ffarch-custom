@@ -18,6 +18,7 @@ depends=(
   ffmpeg
   gtk3
   libpulse
+  libxss
   libxt
   mime-types
   nss
