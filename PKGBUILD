@@ -3,7 +3,7 @@
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox
-pkgver=114.0
+pkgver=114.0.1
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org"
 url="https://www.mozilla.org/firefox/"
@@ -71,11 +71,11 @@ source=(
 validpgpkeys=(
   '14F26682D0916CDD81E37B6D61B7B526D98F0353'  # Mozilla Software Releases <release@mozilla.com>
 )
-sha256sums=('d23a0502742f52110ce496837ba82b47bf38d40585633787508ae5be9a5b4bc6'
+sha256sums=('7e4ebc13e8c94af06f703af2119cf1641d4186174a3d59b7812f9d28f61b7d18'
             'SKIP'
             '1f241fdc619f92a914c75aece7c7c717401d7467c9a306458e106b05f34e5044'
             'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9')
-b2sums=('09d29112a487bc23c0e54380bf5e6ef5c62639aa53b6cca7c9a61b2452f4ee0e1a1b9f7ca996ddb78b842170fa67be0dc926c17956ab505e42966d443a798f34'
+b2sums=('a34733d3216b98e9de8e1f94a036bfdd0f8924a04e6971fa306ac1230a7cdb6a6a807b5d6fc2848038c4148f2b4658aa216c9c0141cc8a231511294bf59b0ef5'
         'SKIP'
         'd07557840097dd48a60c51cc5111950781e1c6ce255557693bd11306c7a9258b2a82548329762148f117b2295145f9e66e0483a18e2fe09c5afcffed2e4b8628'
         '63a8dd9d8910f9efb353bed452d8b4b2a2da435857ccee083fc0c557f8c4c1339ca593b463db320f70387a1b63f1a79e709e9d12c69520993e26d85a3d742e34')
