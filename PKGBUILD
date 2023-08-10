@@ -3,7 +3,7 @@
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
 pkgname=firefox
-pkgver=114.0.2
+pkgver=116.0.2
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org"
 url="https://www.mozilla.org/firefox/"
@@ -72,12 +72,12 @@ source=(
 validpgpkeys=(
   '14F26682D0916CDD81E37B6D61B7B526D98F0353'  # Mozilla Software Releases <release@mozilla.com>
 )
-sha256sums=('aa602032f0b7065b743ba7fabf96714398aba538bcc017a4b0fff556dc69f8fe'
+sha256sums=('6708ab24a748de336aff4789f97f248452a46117e86bb6b4b9746768e52fb114'
             'SKIP'
             'SKIP'
             '1f241fdc619f92a914c75aece7c7c717401d7467c9a306458e106b05f34e5044'
             'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9')
-b2sums=('9c624a1093d00ccbfdb1f251489b4aecc597c8202e5e82b35266e32520a2b70d2001accdcc999c214d077dcda0708b50467a63fc3d67ac12d02b8153a67a71e3'
+b2sums=('59256b68ada144362adb6cd0423ea965d2ec0390d78e0a32b56f83eda8ce212d0f388ffb0ab2d9e902ad0434c8bbed63d54adc3589eafa4f7ad6d3a032801cf8'
         'SKIP'
         'SKIP'
         'd07557840097dd48a60c51cc5111950781e1c6ce255557693bd11306c7a9258b2a82548329762148f117b2295145f9e66e0483a18e2fe09c5afcffed2e4b8628'
@@ -180,7 +180,7 @@ END
 
   echo "Building optimized browser..."
   cat >.mozconfig ../mozconfig - <<END
-ac_add_options --enable-lto=cross
+ac_add_options --enable-lto=cross,full
 ac_add_options --enable-profile-use=cross
 ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
 ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog
@@ -208,6 +208,9 @@ pref("browser.shell.checkDefaultBrowser", false);
 
 // Don't disable extensions in the application directory
 pref("extensions.autoDisableScopes", 11);
+
+// Enable GNOME Shell search provider
+pref("browser.gnome-search-provider.enabled", true);
 END
 
   local distini="$pkgdir/usr/lib/$pkgname/distribution/distribution.ini"
@@ -255,6 +258,15 @@ END
   if [[ -e $nssckbi ]]; then
     ln -srfv "$pkgdir/usr/lib/libnssckbi.so" "$nssckbi"
   fi
+
+  local sprovider="$pkgdir/usr/share/gnome-shell/search-providers/$pkgname.search-provider.ini"
+  install -Dvm644 /dev/stdin "$sprovider" <<END
+[Shell Search Provider]
+DesktopId=$pkgname.desktop
+BusName=org.mozilla.${pkgname//-/}.SearchProvider
+ObjectPath=/org/mozilla/${pkgname//-/}/SearchProvider
+Version=2
+END
 
   export SOCORRO_SYMBOL_UPLOAD_TOKEN_FILE="$startdir/.crash-stats-api.token"
   if [[ -f $SOCORRO_SYMBOL_UPLOAD_TOKEN_FILE ]]; then
